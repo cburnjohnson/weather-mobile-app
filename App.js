@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import WeatherInfo from './components/WeatherInfo';
+import UnitsPicker from './components/UnitsPicker';
 
 const WEATHER_API_KEY = '48450d5b902992766f5644b3968a192d';
 
@@ -49,6 +50,7 @@ export default function App() {
             <View style={styles.container}>
                 <StatusBar style="auto" />
                 <View style={styles.main}>
+                    <UnitsPicker />
                     <WeatherInfo currentWeather={currentWeather} />
                 </View>
             </View>
