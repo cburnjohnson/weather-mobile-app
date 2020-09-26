@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { View, Platform, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../utils/index';
 
@@ -8,10 +8,10 @@ export default function ReloadIcon({ load }) {
     return (
         <View style={styles.reloadIcon}>
             <Ionicons
+                onPress={load}
                 name={reloadIconName}
                 size={24}
                 color={colors.PRIMARY_COLOR}
-                onPress={load}
             />
         </View>
     );
@@ -20,7 +20,7 @@ export default function ReloadIcon({ load }) {
 const styles = StyleSheet.create({
     reloadIcon: {
         position: 'absolute',
-        top: 50,
-        right: -100
+        top: 60,
+        right: 20
     }
 });
