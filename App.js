@@ -7,13 +7,14 @@ import UnitsPicker from './components/UnitsPicker';
 import ReloadIcon from './components/ReloadIcon';
 import WeatherDetails from './components/WeatherDetails';
 import { colors } from './utils/index';
-
 import { WEATHER_API_KEY } from 'react-native-dotenv';
+
+const BASE_WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
 export default function App() {
     const [errorMessage, setErrorMessage] = useState(null);
     const [currentWeather, setCurrentWeather] = useState(null);
-    const [unitsSystem, setUnitsSystem] = useState('imperial');
+    const [unitsSystem, setUnitsSystem] = useState('metric');
 
     useEffect(() => {
         load();
@@ -29,12 +30,11 @@ export default function App() {
                 setErrorMessage('Access to location is needed to run the app');
                 return;
             }
-
             const location = await Location.getCurrentPositionAsync();
 
             const { latitude, longitude } = location.coords;
 
-            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
+            const weatherUrl = `${BASE_WEATHER_URL}lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`;
 
             const response = await fetch(weatherUrl);
 
@@ -49,7 +49,6 @@ export default function App() {
             setErrorMessage(error.message);
         }
     }
-
     if (currentWeather) {
         return (
             <View style={styles.container}>
@@ -72,13 +71,13 @@ export default function App() {
         return (
             <View style={styles.container}>
                 <ReloadIcon load={load} />
-                <Text>{errorMessage}</Text>
+                <Text style={{ textAlign: 'center' }}>{errorMessage}</Text>
                 <StatusBar style="auto" />
             </View>
         );
     } else {
         return (
-            <View style={styles.activityIndicator}>
+            <View style={styles.container}>
                 <ActivityIndicator size="large" color={colors.PRIMARY_COLOR} />
                 <StatusBar style="auto" />
             </View>
@@ -89,15 +88,10 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        justifyContent: 'center'
     },
     main: {
         justifyContent: 'center',
         flex: 1
-    },
-    activityIndicator: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
     }
 });

@@ -33,20 +33,14 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
                             color={PRIMARY_COLOR}
                         />
                         <View style={styles.weatherDetailsItems}>
-                            <Text>Feels like:</Text>
+                            <Text>Feels like :</Text>
                             <Text style={styles.textSecondary}>
-                                {feels_like}
+                                {feels_like} °
                             </Text>
                         </View>
                     </View>
                 </View>
-                <View
-                    style={{
-                        ...styles.weatherDetailsBox,
-                        borderRightWidth: 1,
-                        borderRightColor: BORDER_COLOR
-                    }}
-                >
+                <View style={styles.weatherDetailsBox}>
                     <View style={styles.weatherDetailsRow}>
                         <MaterialCommunityIcons
                             name="water"
@@ -54,7 +48,7 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
                             color={PRIMARY_COLOR}
                         />
                         <View style={styles.weatherDetailsItems}>
-                            <Text>Humidity:</Text>
+                            <Text>Humidity :</Text>
                             <Text style={styles.textSecondary}>
                                 {humidity} %
                             </Text>
@@ -62,7 +56,13 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
                     </View>
                 </View>
             </View>
-            <View style={styles.weatherDetailsRow}>
+            <View
+                style={{
+                    ...styles.weatherDetailsRow,
+                    borderTopWidth: 1,
+                    borderTopColor: BORDER_COLOR
+                }}
+            >
                 <View
                     style={{
                         ...styles.weatherDetailsBox,
@@ -77,20 +77,14 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
                             color={PRIMARY_COLOR}
                         />
                         <View style={styles.weatherDetailsItems}>
-                            <Text>Wind Speed:</Text>
+                            <Text>Wind Speed :</Text>
                             <Text style={styles.textSecondary}>
                                 {windSpeed}
                             </Text>
                         </View>
                     </View>
                 </View>
-                <View
-                    style={{
-                        ...styles.weatherDetailsBox,
-                        borderRightWidth: 1,
-                        borderRightColor: BORDER_COLOR
-                    }}
-                >
+                <View style={styles.weatherDetailsBox}>
                     <View style={styles.weatherDetailsRow}>
                         <MaterialCommunityIcons
                             name="speedometer"
@@ -98,7 +92,7 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
                             color={PRIMARY_COLOR}
                         />
                         <View style={styles.weatherDetailsItems}>
-                            <Text>Pressure:</Text>
+                            <Text>Pressure :</Text>
                             <Text style={styles.textSecondary}>
                                 {pressure} hPa
                             </Text>
@@ -112,6 +106,8 @@ export default function WeatherDetails({ currentWeather, unitsSystem }) {
 
 const styles = StyleSheet.create({
     weatherDetails: {
+        marginTop: 'auto',
+        margin: 15,
         borderWidth: 1,
         borderColor: BORDER_COLOR,
         borderRadius: 10
@@ -122,7 +118,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     weatherDetailsBox: {
-        flex: 1
+        flex: 1,
+        padding: 20
     },
     weatherDetailsItems: {
         alignItems: 'flex-end',
@@ -132,6 +129,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: SECONDARY_COLOR,
         fontWeight: '700',
-        marginTop: 7
+        margin: 7
     }
 });
