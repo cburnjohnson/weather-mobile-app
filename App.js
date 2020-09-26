@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import * as Location from 'expo-location';
 import WeatherInfo from './components/WeatherInfo';
 import UnitsPicker from './components/UnitsPicker';
@@ -17,6 +17,7 @@ export default function App() {
     }, [unitsSystem]);
 
     async function load() {
+        setCurrentWeather(null);
         try {
             let { status } = await Location.requestPermissionsAsync();
 
@@ -50,11 +51,11 @@ export default function App() {
             <View style={styles.container}>
                 <StatusBar style="auto" />
                 <View style={styles.main}>
+                    <WeatherInfo currentWeather={currentWeather} />
                     <UnitsPicker
                         unitsSystem={unitsSystem}
                         setUnitsSystem={setUnitsSystem}
                     />
-                    <WeatherInfo currentWeather={currentWeather} />
                 </View>
             </View>
         );
