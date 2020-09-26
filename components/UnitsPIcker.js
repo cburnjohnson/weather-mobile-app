@@ -20,6 +20,8 @@ export default function UnitsPicker({ unitsSystem, setUnitsSystem }) {
 const styles = StyleSheet.create({
     unitsSystem: {
         height: 50,
-        width: 100
+        width: 100,
+        position: 'absolute',
+        top: 100
     }
 });

@@ -5,9 +5,10 @@ import * as Location from 'expo-location';
 import WeatherInfo from './components/WeatherInfo';
 import UnitsPicker from './components/UnitsPicker';
 import ReloadIcon from './components/ReloadIcon';
+import WeatherDetails from './components/WeatherDetails';
 import { colors } from './utils/index';
 
-const WEATHER_API_KEY = '48450d5b902992766f5644b3968a192d';
+import { WEATHER_API_KEY } from 'react-native-dotenv';
 
 export default function App() {
     const [errorMessage, setErrorMessage] = useState(null);
@@ -54,18 +55,23 @@ export default function App() {
             <View style={styles.container}>
                 <StatusBar style="auto" />
                 <View style={styles.main}>
-                    <WeatherInfo currentWeather={currentWeather} />
-                    <ReloadIcon load={load} />
                     <UnitsPicker
                         unitsSystem={unitsSystem}
                         setUnitsSystem={setUnitsSystem}
                     />
+                    <ReloadIcon load={load} />
+                    <WeatherInfo currentWeather={currentWeather} />
                 </View>
+                <WeatherDetails
+                    currentWeather={currentWeather}
+                    unitsSystem={unitsSystem}
+                />
             </View>
         );
     } else if (errorMessage) {
         return (
             <View style={styles.container}>
+                <ReloadIcon load={load} />
                 <Text>{errorMessage}</Text>
                 <StatusBar style="auto" />
             </View>
